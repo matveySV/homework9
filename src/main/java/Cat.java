@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import java.util.Objects;
 
 public class Cat extends Predator {
@@ -46,7 +47,7 @@ public class Cat extends Predator {
         return Objects.hash(super.hashCode(), breed);
     }
 
-    public String dayOfCat(DayOfWeek dayOfWeek){
+    public String dayOfCat(DayOfWeeks dayOfWeek){
         switch (dayOfWeek){
             case MONDAY,WEDNESDAY,FRIDAY ->{
                 return sleep();
@@ -62,4 +63,6 @@ public class Cat extends Predator {
             }
         }
     }
+
+
 }

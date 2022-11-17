@@ -1,4 +1,4 @@
-public enum DayOfWeek {
+public enum DayOfWeeks {
     SUNDAY,
     MONDAY,
     TUESDAY,

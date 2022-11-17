@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 
 import static org.assertj.core.api.Assertions.*;
@@ -26,33 +25,40 @@ class CatTest {
         assertThat(anotherCat.equals(cat)).isFalse();
     }
 
+    @ParameterizedTest
+    @EnumSource(value = DayOfWeeks.class, names = {"MONDAY", "WEDNESDAY", "FRIDAY"})
+    void shouldCatSleeps(DayOfWeeks dayOfWeek) {
+        Cat cat = new Cat("red", 10, "dvorovoy");
+        assertEquals("Zzz", cat.dayOfCat(dayOfWeek));
+    }
+
     @Test
-    void shouldCatleeps() {
-        Cat cat = new Cat("red", 5, "dvorovoy");
-        assertThat(cat.dayOfCat(DayOfWeek.MONDAY)).isEqualTo("Zzz");
-        assertThat(cat.dayOfCat(DayOfWeek.WEDNESDAY)).isEqualTo("Zzz");
-        assertThat(cat.dayOfCat(DayOfWeek.FRIDAY)).isEqualTo("Zzz");
+    void shouldCatSleeps2() {
+        Cat cat = new Cat("red", 10, "dvorovoy");
+        assertThat(cat.dayOfCat(DayOfWeeks.MONDAY)).isEqualTo("Zzz");
+        assertThat(cat.dayOfCat(DayOfWeeks.WEDNESDAY)).isEqualTo("Zzz");
+        assertThat(cat.dayOfCat(DayOfWeeks.FRIDAY)).isEqualTo("Zzz");
     }
 
     @Test
     void shouldCathunters() {
         Cat cat = new Cat("red", 5, "dvorovoy");
-        assertThat(cat.dayOfCat(DayOfWeek.TUESDAY)).isEqualTo("Rrr");
-        assertThat(cat.dayOfCat(DayOfWeek.THURSDAY)).isEqualTo("Rrr");
-        assertThat(cat.dayOfCat(DayOfWeek.SATURDAY)).isEqualTo("Rrr");
+        assertThat(cat.dayOfCat(DayOfWeeks.TUESDAY)).isEqualTo("Rrr");
+        assertThat(cat.dayOfCat(DayOfWeeks.THURSDAY)).isEqualTo("Rrr");
+        assertThat(cat.dayOfCat(DayOfWeeks.SATURDAY)).isEqualTo("Rrr");
     }
 
     @Test
     void shouldCatdoTigidik() {
         Cat cat = new Cat("red", 5, "dvorovoy");
-        assertThat(cat.dayOfCat(DayOfWeek.SUNDAY)).isEqualTo("Tigidik");
+        assertThat(cat.dayOfCat(DayOfWeeks.SUNDAY)).isEqualTo("Tigidik");
 
     }
+
 
     @Test
     void shouldCatlicksEggs() {
         Cat cat = new Cat("red", 5, "dvorovoy");
-
-        assertThat(cat.dayOfCat(DayOfWeek.ANOTHERDAY)).isEqualTo("Polishing eggs");
+        assertThat(cat.dayOfCat(DayOfWeeks.ANOTHERDAY).equals("Polishing eggs"));
     }
 }
